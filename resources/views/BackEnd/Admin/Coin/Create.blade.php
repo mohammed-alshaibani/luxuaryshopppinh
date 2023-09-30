@@ -1,0 +1,32 @@
+@extends('layouts.dashboard.header')
+
+@section('content')
+<div class="container">
+    <h1>إنشاء عملة جديدة</h1>
+   
+    <form action="{{ route('add_coin') }}" method="POST">
+        @csrf
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="mb-3">
+            <label for="name" class="form-label">اسم العملة</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="value" class="form-label">سعر الصرف مقابل اليمني</label>
+            <input type="decimal" class="form-control" id="value" name="value" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">حفظ</button>
+    </form>
+</div>
+@endsection
+
